@@ -10,6 +10,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://camargo1409.github.io',
-  base: '/camargolab',
+  site: 'https://camargolab.dev',
 });
