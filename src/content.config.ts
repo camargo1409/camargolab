@@ -9,8 +9,6 @@ const sections = defineCollection({
     title: z.string(),
     number: z.string().optional(),
     badge: z.string().optional(),
-    ctaLabel: z.string().optional(),
-    ctaHref: z.string().optional(),
     cvLabel: z.string().optional(),
     cvHref: z.string().optional(),
     github: z.string().url().optional(),
@@ -30,18 +28,34 @@ const skills = defineCollection({
   }),
 });
 
-// Timeline entries — the body is the role description.
+// Timeline entries — the body is a bullet list (top highlights, same texts as cv.md).
 const experiences = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/experiences' }),
   schema: z.object({
     role: z.string(),
     company: z.string(),
     period: z.string(),
-    impact: z.string().optional(),
+    location: z.string().optional(),
     tags: z.array(z.string()),
     order: z.number(),
     current: z.boolean().default(false),
   }),
+});
+
+// The full CV, rendered at /cv. One file per locale: cv.md (EN), cv.pt.md (PT).
+// The body follows the conventions documented at the top of cv.md and is
+// parsed by src/lib/cv.ts.
+const cv = defineCollection({
+	loader: glob({ pattern: 'cv*.md', base: './src/content' }),
+	schema: z.object({
+		name: z.string(),
+		title: z.string(),
+		email: z.string(),
+		phone: z.string().optional(),
+		location: z.string().optional(),
+		linkedin: z.string().optional(),
+		github: z.string().optional(),
+	}),
 });
 
 // Stack categories — frontmatter only.
@@ -54,4 +68,4 @@ const stack = defineCollection({
   }),
 });
 
-export const collections = { sections, skills, experiences, stack };
+export const collections = { sections, skills, experiences, stack, cv };

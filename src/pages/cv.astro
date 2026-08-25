@@ -1,0 +1,209 @@
+---
+import { getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { parseCv, mdInline } from '../lib/cv';
+import { personSchema } from '../lib/seo';
+
+// The rendered CV shows only the first N bullets of each experience;
+// the rest stay in cv.md as an ordered bank.
+const MAX_BULLETS = 6;
+
+const entry = await getEntry('cv', 'cv');
+if (!entry) throw new Error('Missing src/content/cv.md');
+
+const { name, title, email, phone, location, linkedin, github } = entry.data;
+const sections = parseCv(entry.body ?? '');
+
+const contact = [
+	email ? { label: email, href: `mailto:${email}` } : null,
+	phone ? { label: phone, href: `tel:${phone.replace(/[^+\d]/g, '')}` } : null,
+	location ? { label: location } : null,
+	linkedin ? { label: linkedin, href: `https://${linkedin}` } : null,
+	github ? { label: github, href: `https://${github}` } : null,
+].filter((c): c is { label: string; href?: string } => c !== null);
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfilePage',
+	mainEntity: { ...personSchema(Astro.site?.href), '@context': undefined },
+};
+---
+
+<Layout title={`${name} — ${title} | CV`} ogType="profile" structuredData={structuredData}>
+	<div class="no-print border-b border-line/60 bg-ink-950">
+		<div class="mx-auto flex h-16 max-w-[210mm] items-center justify-between px-6">
+			<a href="/" class="font-mono text-xs text-fog transition-colors hover:text-white">
+				← camargolab
+			</a>
+			<button
+				id="download-pdf"
+				class="cursor-pointer rounded-sm border border-accent px-4 py-2 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-ink-950"
+			>
+				Download PDF
+			</button>
+		</div>
+	</div>
+
+	<main class="cv-sheet mx-auto my-10 max-w-[210mm] bg-white px-10 py-12 text-slate-800 shadow-2xl sm:rounded-md sm:px-14">
+		<!-- Header -->
+		<header class="mb-8 border-b-2 border-slate-800 pb-6">
+			<h1 class="text-3xl font-bold tracking-tight text-slate-900">{name}</h1>
+			<p class="mt-1 text-lg text-cyan-700">{title}</p>
+			<p class="mt-3 text-xs leading-relaxed text-slate-500">
+				{
+					contact.map((c, i) => (
+						<>
+							{i > 0 && <span class="mx-1.5 text-slate-300">·</span>}
+							{c.href ? (
+								<a href={c.href} class="hover:text-cyan-700 hover:underline">
+									{c.label}
+								</a>
+							) : (
+								<span>{c.label}</span>
+							)}
+						</>
+					))
+				}
+			</p>
+		</header>
+
+		{
+			sections.map((section) => (
+				<section class="mb-8 last:mb-0">
+					<h2 class="mb-3 border-b border-slate-200 pb-1 text-[13px] font-bold uppercase tracking-[0.15em] text-slate-900">
+						{section.title}
+					</h2>
+
+					{section.paragraphs.map((p) => (
+						<p class="text-[13px] leading-relaxed text-slate-700" set:html={mdInline(p)} />
+					))}
+
+					{section.experiences.map((exp) => (
+						<article class="cv-entry mb-6 last:mb-0">
+							<div class="flex flex-wrap items-baseline justify-between gap-x-4">
+								<h3 class="text-sm font-bold text-slate-900">
+									{exp.company}
+									{exp.role && <span class="font-normal text-slate-600"> — {exp.role}</span>}
+								</h3>
+								<span class="text-xs font-medium text-cyan-700">{exp.period}</span>
+							</div>
+							{exp.note && <p class="mt-0.5 text-xs italic text-slate-500">{exp.note}</p>}
+							<ul class="mt-2 space-y-1.5">
+								{exp.bullets.slice(0, MAX_BULLETS).map((b) => (
+									<li
+										class="pl-4 text-[13px] leading-relaxed text-slate-700 before:absolute before:-ml-4 before:text-cyan-700 before:content-['▸'] relative"
+										set:html={mdInline(b)}
+									/>
+								))}
+							</ul>
+						</article>
+					))}
+
+					{section.bullets.length > 0 &&
+						(section.title === 'Core Expertise' || section.title === 'Competências principais' ? (
+							<ul class="grid grid-cols-2 gap-x-8 gap-y-1 sm:grid-cols-3">
+								{section.bullets.map((b) => (
+									<li
+										class="relative pl-4 text-xs leading-relaxed text-slate-700 before:absolute before:left-0 before:text-cyan-700 before:content-['▪']"
+										set:html={mdInline(b)}
+									/>
+								))}
+							</ul>
+						) : (
+							<ul class="space-y-1">
+								{section.bullets.map((b) => (
+									<li class="text-[13px] leading-relaxed text-slate-700" set:html={mdInline(b)} />
+								))}
+							</ul>
+						))}
+				</section>
+			))
+		}
+	</main>
+
+	<script>
+		document.getElementById('download-pdf')?.addEventListener('click', () => window.print());
+	</script>
+</Layout>
+
+<style is:global>
+	.cv-sheet strong {
+		color: #0f172a;
+		font-weight: 600;
+	}
+	.cv-sheet code {
+		font-family: var(--font-mono);
+		font-size: 0.85em;
+		background: #f1f5f9;
+		border-radius: 3px;
+		padding: 0.1em 0.35em;
+		color: #0e7490;
+	}
+
+	/* Print: compress everything so the CV fits in as few pages as possible. */
+	@media print {
+		.no-print {
+			display: none !important;
+		}
+		body {
+			background: #fff !important;
+		}
+		.cv-sheet {
+			margin: 0 !important;
+			max-width: none !important;
+			box-shadow: none !important;
+			border-radius: 0 !important;
+			padding: 0 !important;
+		}
+		.cv-sheet li {
+			break-inside: avoid;
+		}
+		.cv-sheet header {
+			margin-bottom: 4mm !important;
+			padding-bottom: 3mm !important;
+		}
+		.cv-sheet h1 {
+			font-size: 19px !important;
+		}
+		.cv-sheet header p.text-lg {
+			font-size: 12px !important;
+			margin-top: 1px !important;
+		}
+		.cv-sheet header p:last-child {
+			margin-top: 4px !important;
+		}
+		.cv-sheet section {
+			margin-bottom: 3.5mm !important;
+		}
+		.cv-sheet h2 {
+			font-size: 9.5px !important;
+			margin-bottom: 5px !important;
+			padding-bottom: 2px !important;
+		}
+		.cv-sheet h3 {
+			font-size: 10.5px !important;
+		}
+		.cv-sheet p,
+		.cv-sheet li {
+			font-size: 9.5px !important;
+			line-height: 1.4 !important;
+		}
+		.cv-sheet .cv-entry {
+			margin-bottom: 2.5mm !important;
+		}
+		.cv-sheet .cv-entry ul {
+			margin-top: 3px !important;
+		}
+		.cv-sheet ul > li {
+			margin-top: 2px !important;
+		}
+		.cv-sheet ul > li:first-child {
+			margin-top: 0 !important;
+		}
+	}
+
+	@page {
+		size: A4;
+		margin: 9mm 11mm;
+	}
+</style>

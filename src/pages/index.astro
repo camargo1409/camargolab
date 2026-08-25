@@ -7,6 +7,7 @@ import Skills from '../components/Skills.astro';
 import Experiences from '../components/Experiences.astro';
 import Stack from '../components/Stack.astro';
 import Footer from '../components/Footer.astro';
+import { personSchema } from '../lib/seo';
 
 const hero = await getEntry('sections', 'hero');
 const skillsSection = await getEntry('sections', 'skills');
@@ -20,9 +21,12 @@ if (!hero || !skillsSection || !experiencesSection || !stackSection) {
 const skills = await getCollection('skills');
 const experiences = await getCollection('experiences');
 const stack = await getCollection('stack');
+
+const knowsAbout = stack.flatMap((s) => s.data.items);
+const structuredData = personSchema(Astro.site?.href, knowsAbout);
 ---
 
-<Layout>
+<Layout ogType="profile" structuredData={structuredData}>
 	<Header cvLabel={hero.data.cvLabel} cvHref={hero.data.cvHref} />
 	<main>
 		<Hero entry={hero} />

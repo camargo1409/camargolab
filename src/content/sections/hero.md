@@ -1,10 +1,8 @@
 ---
 title: Full-Stack Engineer.
 badge: Available for new opportunities
-ctaLabel: View Architecture
-ctaHref: '#skills'
-cvLabel: Download CV
-cvHref: /cv.pdf
+cvLabel: CV
+cvHref: /cv
 github: 'https://github.com/camargo1409'
 linkedin: 'https://www.linkedin.com/in/gabriel-mcamargo'
 ---

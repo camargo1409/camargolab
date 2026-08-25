@@ -1,15 +1,24 @@
 ---
 import '../styles/global.css';
+import { SEO } from '../lib/seo';
 
 interface Props {
 	title?: string;
 	description?: string;
+	keywords?: string[];
+	ogType?: string;
+	structuredData?: object;
 }
 
 const {
-	title = 'Gabriel Camargo — Full-Stack Engineer',
-	description = 'Full-Stack Engineer with 6+ years of experience building scalable, high-performance web applications end to end.',
+	title = `${SEO.name} — ${SEO.role} | Next.js, React, Node.js`,
+	description = SEO.description,
+	keywords = SEO.keywords,
+	ogType = 'website',
+	structuredData,
 } = Astro.props;
+
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
 
 <!doctype html>
@@ -19,8 +28,33 @@ const {
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
 		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords.join(', ')} />
+		<meta name="author" content={SEO.name} />
+		<meta name="robots" content="index, follow" />
+		{canonical && <link rel="canonical" href={canonical} />}
+		<link rel="sitemap" href="/sitemap-index.xml" />
+
+		<!-- Open Graph -->
+		<meta property="og:type" content={ogType} />
+		<meta property="og:site_name" content={`${SEO.name} — ${SEO.role}`} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		{canonical && <meta property="og:url" content={canonical} />}
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+
+		{
+			structuredData && (
+				<script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+			)
+		}
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link

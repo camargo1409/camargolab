@@ -2,8 +2,8 @@
 role: Full-Stack Developer
 company: Mais Retorno
 period: 2021 — 2025
+location: Brazil (Remote)
 order: 2
-impact: 'Built an invoice generation system with Node.js, PostgreSQL and cron jobs, replacing a manual process that took over an hour per cycle with a fully automated one.'
 tags:
   - Next.js
   - NestJS
@@ -11,4 +11,12 @@ tags:
   - Keycloak
 ---
 
-Democratizing access to financial information and investment tools. Built a mutual fund screener in Next.js letting users filter and compare over 30,000 funds, designed a production-grade checkout and subscription system integrating Pagar.me, and led the migration of a core system from Python (Django) to Node.js (NestJS).
+#### Context
+
+Mais Retorno is a Brazilian fintech democratizing access to financial information and investment tools — fund analysis platforms, market data, and premium subscriptions used by thousands of investors. I worked across the whole stack, from Next.js frontends with heavy data visualization to Node.js/NestJS services handling payments and authentication.
+
+#### Achievements
+
+- Built a mutual fund screener in Next.js letting users filter and compare over 30,000 funds across dozens of criteria, architecting the shared filter state with Zustand and optimizing render performance for large result sets.
+- Designed and implemented a production-grade checkout and subscription system in Next.js, integrating Pagar.me for secure payment processing and recurring billing flows.
+- Led the migration of a system from Python (Django) to Node.js (NestJS) to align with the team's expertise in JavaScript.

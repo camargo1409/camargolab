@@ -39,22 +39,33 @@ const jobs = await Promise.all(
 						/>
 
 						<div class="rounded-md border border-line bg-ink-800/50 p-7 transition-colors hover:border-accent/40">
-							<div class="mb-1 flex flex-wrap items-baseline justify-between gap-2">
-								<h3 class="text-lg font-bold text-white">{entry.data.role}</h3>
-								<span class="font-mono text-xs text-accent">{entry.data.period}</span>
+							<div class="mb-5 flex flex-wrap items-start justify-between gap-x-6 gap-y-2">
+								<div>
+									<h3 class="text-lg font-bold text-white">{entry.data.company}</h3>
+									<p class="text-sm text-fog">{entry.data.role}</p>
+								</div>
+								<div class="flex flex-wrap items-center gap-x-5 gap-y-1 font-mono text-xs">
+									<span class="flex items-center gap-1.5 text-accent">
+										<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+										</svg>
+										{entry.data.period}
+									</span>
+									{entry.data.location && (
+										<span class="flex items-center gap-1.5 text-fog">
+											<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+												<path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+												<path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+											</svg>
+											{entry.data.location}
+										</span>
+									)}
+								</div>
 							</div>
 
-							<p class="mb-4 text-sm text-fog">{entry.data.company}</p>
-
-							<div class="md-body mb-5 text-sm leading-relaxed text-slate-300">
+							<div class="md-body bullet-list exp-body mb-5 text-sm leading-relaxed text-slate-300">
 								<Content />
 							</div>
-
-							{entry.data.impact && (
-								<div class="mb-5 rounded-sm border border-line bg-ink-950/70 px-4 py-3 font-mono text-xs leading-relaxed text-slate-300">
-									<span class="text-accent">Impact:</span> {entry.data.impact}
-								</div>
-							)}
 
 							<div class="flex flex-wrap gap-2">
 								{entry.data.tags.map((tag) => (

@@ -4,7 +4,7 @@ interface Props {
 	cvHref?: string;
 }
 
-const { cvLabel = 'Download CV', cvHref = '#' } = Astro.props;
+const { cvLabel = 'CV', cvHref = '/cv' } = Astro.props;
 
 const links = [
 	{ label: 'Hero', href: '#hero' },
@@ -22,13 +22,10 @@ const links = [
 
 		<nav class="hidden items-center gap-8 font-mono text-xs text-fog md:flex">
 			{
-				links.map((link, i) => (
+				links.map((link) => (
 					<a
 						href={link.href}
-						class:list={[
-							'transition-colors hover:text-white',
-							i === 0 && 'border-b-2 border-accent pb-1 text-white',
-						]}
+						class="border-b-2 border-transparent pb-1 transition-colors hover:border-accent hover:text-white"
 					>
 						{link.label}
 					</a>
