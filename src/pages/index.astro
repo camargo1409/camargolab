@@ -1,0 +1,34 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Skills from '../components/Skills.astro';
+import Experiences from '../components/Experiences.astro';
+import Stack from '../components/Stack.astro';
+import Footer from '../components/Footer.astro';
+
+const hero = await getEntry('sections', 'hero');
+const skillsSection = await getEntry('sections', 'skills');
+const experiencesSection = await getEntry('sections', 'experiences');
+const stackSection = await getEntry('sections', 'stack');
+
+if (!hero || !skillsSection || !experiencesSection || !stackSection) {
+	throw new Error('Missing section content in src/content/sections/');
+}
+
+const skills = await getCollection('skills');
+const experiences = await getCollection('experiences');
+const stack = await getCollection('stack');
+---
+
+<Layout>
+	<Header cvLabel={hero.data.cvLabel} cvHref={hero.data.cvHref} />
+	<main>
+		<Hero entry={hero} />
+		<Skills section={skillsSection} entries={skills} />
+		<Experiences section={experiencesSection} entries={experiences} />
+		<Stack section={stackSection} entries={stack} />
+	</main>
+	<Footer github={hero.data.github} linkedin={hero.data.linkedin} />
+</Layout>

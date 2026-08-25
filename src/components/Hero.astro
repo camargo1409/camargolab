@@ -1,0 +1,105 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	entry: CollectionEntry<'sections'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<section id="hero" class="relative overflow-hidden pt-16">
+	<div
+		class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,0.07),transparent_55%)]"
+	>
+	</div>
+
+	<div class="relative mx-auto grid max-w-6xl items-center gap-16 px-6 py-24 lg:grid-cols-2 lg:py-32">
+		<div>
+			{
+				entry.data.badge && (
+					<div class="mb-8 inline-flex items-center gap-2 rounded-sm border border-line bg-ink-800/60 px-3 py-1.5 font-mono text-xs text-accent">
+						<span class="relative flex h-2 w-2">
+							<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+							<span class="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+						</span>
+						{entry.data.badge}
+					</div>
+				)
+			}
+
+			<h1 class="mb-6 text-5xl font-bold tracking-tight text-white sm:text-6xl">
+				{entry.data.title}
+			</h1>
+
+			<div class="md-body mb-10 max-w-xl text-sm leading-relaxed text-fog">
+				<Content />
+			</div>
+
+			<div class="flex items-center gap-3">
+				{
+					entry.data.ctaLabel && (
+						<a
+							href={entry.data.ctaHref ?? '#skills'}
+							class="rounded-sm border border-accent px-5 py-2.5 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-ink-950"
+						>
+							{entry.data.ctaLabel}
+						</a>
+					)
+				}
+				{
+					entry.data.github && (
+						<a
+							href={entry.data.github}
+							target="_blank"
+							rel="noopener noreferrer"
+							aria-label="GitHub"
+							class="rounded-sm border border-line px-3 py-2.5 font-mono text-xs text-fog transition-colors hover:border-accent hover:text-accent"
+						>
+							&lt;&gt;
+						</a>
+					)
+				}
+			</div>
+		</div>
+
+		<div class="relative hidden lg:block">
+			<div
+				class="relative rounded-md border border-line bg-gradient-to-br from-ink-800 to-ink-900 p-1 shadow-[0_0_80px_-20px_rgba(34,211,238,0.25)]"
+			>
+				<div class="flex items-center gap-1.5 border-b border-line px-4 py-3">
+					<span class="h-2.5 w-2.5 rounded-full bg-red-400/60"></span>
+					<span class="h-2.5 w-2.5 rounded-full bg-yellow-400/60"></span>
+					<span class="h-2.5 w-2.5 rounded-full bg-green-400/60"></span>
+					<span class="ml-3 font-mono text-[11px] text-fog/60">architecture.ts</span>
+				</div>
+				<pre
+					class="overflow-x-auto p-5 font-mono text-xs leading-6 text-slate-300"><code><span class="text-fuchsia-400">const</span> <span class="text-cyan-300">architecture</span> = &#123;
+  frontend: [<span class="text-emerald-300">'Next.js'</span>, <span class="text-emerald-300">'React'</span>],
+  backend: [<span class="text-emerald-300">'Node.js'</span>, <span class="text-emerald-300">'NestJS'</span>],
+  systems: [<span class="text-emerald-300">'Payments'</span>, <span class="text-emerald-300">'Queues'</span>, <span class="text-emerald-300">'Search'</span>],
+&#125;;
+
+<span class="text-fuchsia-400">await</span> <span class="text-cyan-300">deploy</span>(architecture, &#123;
+  scale: <span class="text-orange-300">'end-to-end'</span>,
+&#125;);</code></pre>
+				<div class="border-t border-line px-5 py-3">
+					<p class="font-mono text-[11px] text-fog/70">// Scalable cloud infrastructure</p>
+				</div>
+			</div>
+
+			<span
+				class="absolute -left-5 top-1/2 rounded-sm border border-line bg-ink-950 px-2.5 py-1 font-mono text-[11px] text-emerald-300"
+			>
+				200 OK
+			</span>
+			<span
+				class="absolute -right-4 top-14 rounded-sm border border-line bg-ink-950 px-2.5 py-1 font-mono text-[11px] text-accent"
+			>
+				O(1)
+			</span>
+		</div>
+	</div>
+</section>

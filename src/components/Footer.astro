@@ -1,0 +1,43 @@
+---
+interface Props {
+	github?: string;
+	linkedin?: string;
+}
+
+const { github, linkedin } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line/60">
+	<div
+		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 font-mono text-xs text-fog sm:flex-row"
+	>
+		<p>© {year} Gabriel Camargo. Built for performance.</p>
+		<div class="flex items-center gap-6">
+			{
+				github && (
+					<a
+						href={github}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="transition-colors hover:text-accent"
+					>
+						GitHub ↗
+					</a>
+				)
+			}
+			{
+				linkedin && (
+					<a
+						href={linkedin}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="transition-colors hover:text-accent"
+					>
+						LinkedIn ↗
+					</a>
+				)
+			}
+		</div>
+	</div>
+</footer>

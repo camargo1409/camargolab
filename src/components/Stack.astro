@@ -1,0 +1,41 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+import Tag from './Tag.astro';
+
+interface Props {
+	section: CollectionEntry<'sections'>;
+	entries: CollectionEntry<'stack'>[];
+}
+
+const { section, entries } = Astro.props;
+const { Content: SectionIntro } = await render(section);
+
+const categories = [...entries].sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="stack" class="scroll-mt-16">
+	<div class="mx-auto max-w-6xl px-6 py-24">
+		<SectionHeading number={section.data.number} title={section.data.title}>
+			<SectionIntro />
+		</SectionHeading>
+
+		<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				categories.map((entry) => (
+					<article class="rounded-md border border-line bg-ink-800/50 p-6 transition-colors hover:border-accent/40">
+						<h3 class="mb-4 font-mono text-xs font-medium tracking-wide text-accent">
+							{entry.data.category}
+						</h3>
+						<div class="flex flex-wrap gap-2">
+							{entry.data.items.map((item) => (
+								<Tag label={item} />
+							))}
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -1,0 +1,70 @@
+---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+import Tag from './Tag.astro';
+
+interface Props {
+	section: CollectionEntry<'sections'>;
+	entries: CollectionEntry<'experiences'>[];
+}
+
+const { section, entries } = Astro.props;
+const { Content: SectionIntro } = await render(section);
+
+const jobs = await Promise.all(
+	[...entries]
+		.sort((a, b) => a.data.order - b.data.order)
+		.map(async (entry) => ({ entry, Content: (await render(entry)).Content })),
+);
+---
+
+<section id="experiences" class="scroll-mt-16">
+	<div class="mx-auto max-w-6xl px-6 py-24">
+		<SectionHeading number={section.data.number} title={section.data.title}>
+			<SectionIntro />
+		</SectionHeading>
+
+		<div class="relative space-y-10 border-l border-line pl-8 md:ml-2">
+			{
+				jobs.map(({ entry, Content }) => (
+					<article class="relative">
+						<span
+							class:list={[
+								'absolute -left-[37px] top-8 h-3 w-3 rounded-full border-2 md:-left-[38.5px]',
+								entry.data.current
+									? 'border-accent bg-accent shadow-[0_0_12px_rgba(34,211,238,0.8)]'
+									: 'border-line bg-ink-700',
+							]}
+						/>
+
+						<div class="rounded-md border border-line bg-ink-800/50 p-7 transition-colors hover:border-accent/40">
+							<div class="mb-1 flex flex-wrap items-baseline justify-between gap-2">
+								<h3 class="text-lg font-bold text-white">{entry.data.role}</h3>
+								<span class="font-mono text-xs text-accent">{entry.data.period}</span>
+							</div>
+
+							<p class="mb-4 text-sm text-fog">{entry.data.company}</p>
+
+							<div class="md-body mb-5 text-sm leading-relaxed text-slate-300">
+								<Content />
+							</div>
+
+							{entry.data.impact && (
+								<div class="mb-5 rounded-sm border border-line bg-ink-950/70 px-4 py-3 font-mono text-xs leading-relaxed text-slate-300">
+									<span class="text-accent">Impact:</span> {entry.data.impact}
+								</div>
+							)}
+
+							<div class="flex flex-wrap gap-2">
+								{entry.data.tags.map((tag) => (
+									<Tag label={tag} />
+								))}
+							</div>
+						</div>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>
