@@ -34,6 +34,15 @@ Gabriel Camargo
 gabrielcamargo1409@gmail.com · +55 (17) 99126-7046
 linkedin.com/in/gabriel-mcamargo · github.com/camargo1409
 
+**Título (varia por versão):**
+- Versão fullstack e backend: `Full-Stack Engineer`
+- Versão frontend `[F]`: `Frontend Engineer`
+
+→ *O título e a abertura do Summary andam juntos: quem usa `Frontend Engineer` usa a abertura
+frontend, quem usa `Full-Stack Engineer` usa a padrão. Trocar um sem o outro deixa cabeçalho
+e primeira linha se contradizendo. Nas duas trilhas o título fica em inglês, igual à abertura
+do Summary, que também não é traduzida na linha `PT`.*
+
 **Linha de localização (opcional):**
 - Versão EN: `Novo Horizonte, São Paulo, Brazil`
 - Versão PT: `Novo Horizonte, São Paulo`
@@ -48,9 +57,10 @@ capital. Na versão PT, `Brazil` sai (o leitor é brasileiro) e o resto fica igu
 
 ## Summary
 
-O parágrafo é o mesmo em todas as versões; só a **frase de especialização** muda.
+O parágrafo é o mesmo em todas as versões; só a **abertura** e a **frase de especialização**
+mudam — e a abertura só tem duas formas: a padrão e a frontend.
 
-**Abertura (comum a todas):**
+**Abertura padrão (fullstack e backend):**
 
 > Full-Stack Engineer with 6+ years of experience building scalable, high-performance web
 > applications end to end — from Next.js and React interfaces to Node.js and NestJS
@@ -61,6 +71,25 @@ O parágrafo é o mesmo em todas as versões; só a **frase de especialização*
 escaláveis e de alta performance de ponta a ponta — de interfaces em Next.js e React a
 serviços em Node.js e NestJS, com experiência prática em pagamentos, autenticação,
 processamento assíncrono e sistemas de busca.
+
+**Abertura frontend `[F]`:**
+
+> Frontend Engineer with 6+ years of experience building scalable, high-performance web
+> interfaces — from React and Next.js applications to the Node.js and NestJS services behind
+> them, with hands-on experience in payments, authentication, background processing, and
+> search systems.
+
+**PT** — Frontend Engineer com mais de 6 anos de experiência construindo interfaces web
+escaláveis e de alta performance — de aplicações em React e Next.js aos serviços em Node.js
+e NestJS por trás delas, com experiência prática em pagamentos, autenticação, processamento
+assíncrono e sistemas de busca.
+
+→ *Existe para casar com o título `Frontend Engineer`: cabeçalho dizendo uma coisa e primeira
+linha dizendo outra é a primeira incoerência que o leitor encontra. A troca é de ênfase, não
+de conteúdo — a interface passa a ser o sujeito e o backend vira o que está "por trás dela",
+mas os quatro domínios (pagamentos, autenticação, processamento assíncrono, busca) continuam
+inteiros. Você não vira menos fullstack por causa dela; o currículo inteiro prova o
+contrário três linhas abaixo.*
 
 **Frase de especialização — versão frontend `[F]`:**
 
@@ -194,14 +223,31 @@ offers on a client-facing site, implemented with NestJS.
 fila Amazon SQS, normalizando e indexando mais de 1 milhão de produtos no Elasticsearch para
 viabilizar ofertas em tempo real em um site voltado ao cliente, implementado com NestJS.
 
-`[F/B]` Built end-to-end test coverage for a sales funnel with Playwright, integrated with
-LambdaTest Real Device automation to validate critical flows on physical iOS devices.
+`[F/B]` Built automated end-to-end tests for a sales funnel with Playwright, covering the
+full path from onboarding to checkout, and integrated them with LambdaTest Real Device
+automation to run on physical iOS devices.
 
-**PT** — Implementei cobertura de testes end-to-end de um funil de vendas com Playwright,
-integrado ao LambdaTest Real Device Automation para validar fluxos críticos em dispositivos
-iOS físicos.
+**PT** — Implementei testes automatizados end-to-end de um funil de vendas com Playwright,
+cobrindo o caminho completo do onboarding ao checkout, integrados ao LambdaTest Real Device
+Automation para rodar em dispositivos iOS físicos.
 
-### Camada LLM não-autoritativa — duas redações. Use **uma**, conforme o bullet do RAG entrar ou não.
+→ *a redação anterior dizia "critical flows" sem dizer quais. Nomear onboarding → checkout é
+o que tira este bullet da lista dos que só descrevem o que foi feito: continua sem número,
+mas agora tem escopo. O par dele é o bullet de Jest na Mais Retorno — juntos cobrem E2E e
+unitário, que é o que uma vaga com peso em QA procura.*
+
+`[F/B]` Instrumented a React sales funnel and mobile apps with PostHog, tracking product
+events and frontend errors to monitor user behavior and surface production failures.
+
+**PT** — Instrumentei um funil de vendas em React e aplicativos mobile com PostHog,
+registrando eventos de produto e erros de frontend para acompanhar o comportamento do
+usuário e identificar falhas em produção.
+
+→ *é o bullet que prova observabilidade no lado do cliente; o par dele é o Sentry na Mais
+Retorno, e juntos formam padrão em vez de caso isolado. Pela regra de corte ele é frágil —
+não tem número nem decisão arquitetural — então só entra nos 6 quando a vaga citar
+observabilidade ou monitoramento. Nesse caso ele sobe e o MCP desce. Não diga que montou
+dashboard, alerta ou SLO: o que existe é instrumentação de eventos e captura de erro.* — duas redações. Use **uma**, conforme o bullet do RAG entrar ou não.
 
 `[B]` **Redação acompanhada** — só quando o bullet do RAG estiver logo acima.
 
@@ -304,6 +350,19 @@ optimizing render performance for large result sets.
 30 mil fundos por dezenas de critérios, arquitetando o estado compartilhado dos filtros com
 Zustand e otimizando a performance de renderização para grandes volumes de resultados.
 
+`[F]` Built accessible interface components in Next.js, pairing Material UI primitives with
+semantic HTML and explicit ARIA roles and labels, following WCAG guidance for custom
+interactive elements.
+
+**PT** — Desenvolvi componentes de interface acessíveis em Next.js, combinando primitivos do
+Material UI com HTML semântico e roles e labels ARIA explícitos, seguindo as diretrizes da
+WCAG para elementos interativos customizados.
+
+→ *o texto diz "following WCAG guidance", e é o máximo que o histórico sustenta: houve
+prática de acessibilidade na construção dos componentes, não um programa de conformidade —
+sem auditoria, sem axe, sem teste com leitor de tela, sem nível AA declarado. Não escreva
+"WCAG 2.1 AA compliant" em lugar nenhum; ver notas para entrevista.*
+
 `[F]` Architected and developed interactive financial analysis platforms using Next.js,
 supporting complex data visualization and dynamic routing.
 
@@ -336,6 +395,17 @@ Keycloak, supporting secure multi-tenant access control.
 **PT** — Implementei autenticação e gerenciamento de sessão com NextAuth integrado ao
 Keycloak, com controle de acesso multi-tenant.
 
+`[F/B]` Monitored API errors in production with Sentry, using captured stack traces and
+request context to triage failures and prioritize fixes.
+
+**PT** — Monitorei erros da API em produção com Sentry, usando as stack traces e o contexto
+das requisições capturados para triar falhas e priorizar correções.
+
+→ *é `[F/B]` de propósito, apesar de falar de API: é o segundo bullet de observabilidade, e
+na versão frontend ele entra junto do PostHog para o tema aparecer em duas empresas. O texto
+diz "API" com todas as letras — num currículo de frontend isso é honesto, não é venda de
+experiência que não existe.*
+
 `[F]` Built a subscription management page using Next.js SSR to fetch subscription details
 and Pagar.me invoices on the server, ensuring data integrity and optimized initial load.
 
@@ -360,6 +430,17 @@ the team's expertise in JavaScript.
 
 **PT** — Liderei a migração de um sistema de Python (Django) para Node.js (NestJS),
 alinhando a stack à expertise do time em JavaScript.
+
+`[B]` Wrote automated unit tests with Jest for the use cases of a NestJS API, covering their
+business rules.
+
+**PT** — Escrevi testes unitários automatizados com Jest para os casos de uso de uma API
+NestJS, cobrindo suas regras de negócio.
+
+→ *é `[B]` porque testa API, mas é ele que leva o termo "testes automatizados" para dentro
+dos 6 na versão fullstack — na frontend quem leva é o Playwright. Se os dois entrarem na
+mesma versão, entram como par: um é E2E, o outro é unitário, e a leitura junta é "testa nos
+dois níveis".*
 
 `[B]` Built an invoice generation system with Node.js, Express, PostgreSQL and cron jobs,
 replacing a manual process that took over an hour of issuing and reviewing per cycle with a
@@ -467,8 +548,10 @@ laboratórios.
 - Performance optimization (Lighthouse, Core Web Vitals)
 - Scalable frontend systems design
 - Component architecture & design systems
+- Web accessibility (WCAG, semantic HTML, ARIA)
 - State management (Zustand, Context, SWR)
-- End-to-end testing (Playwright, Cypress)
+- Frontend observability & error monitoring (PostHog, Sentry)
+- Automated testing (Playwright, Cypress, Jest)
 
 **PT** —
 - Next.js (SSR, SSG, App Router, API Routes, Middleware)
@@ -477,8 +560,10 @@ laboratórios.
 - Otimização de performance (Lighthouse, Core Web Vitals)
 - Design de sistemas frontend escaláveis
 - Arquitetura de componentes & design systems
+- Acessibilidade web (WCAG, HTML semântico, ARIA)
 - Gerenciamento de estado (Zustand, Context, SWR)
-- Testes end-to-end (Playwright, Cypress)
+- Observabilidade de frontend & monitoramento de erros (PostHog, Sentry)
+- Testes automatizados (Playwright, Cypress, Jest)
 
 ### Versão backend `[B]`
 - Node.js & NestJS development
@@ -489,6 +574,8 @@ laboratórios.
 - PostgreSQL & relational databases (pgvector, full-text search)
 - Background jobs & queue processing
 - Vector search & LLM integration
+- Observability & error monitoring (Sentry, PostHog)
+- Automated testing (Jest, Playwright)
 - Git workflows & deployment pipelines
 - Cloud & web infrastructure
 
@@ -501,6 +588,8 @@ laboratórios.
 - PostgreSQL & bancos relacionais (pgvector, full-text search)
 - Processamento assíncrono & filas
 - Busca vetorial & integração com LLM
+- Observabilidade & monitoramento de erros (Sentry, PostHog)
+- Testes automatizados (Jest, Playwright)
 - Versionamento com Git & pipelines de deploy
 - Infraestrutura cloud & web
 
@@ -516,7 +605,9 @@ laboratórios.
 - Background jobs & queue processing
 - PostgreSQL & relational databases (pgvector, full-text search)
 - Performance optimization (Lighthouse, Core Web Vitals)
-- End-to-end testing (Playwright, Cypress)
+- Observability & error monitoring (PostHog, Sentry)
+- Automated testing (Playwright, Jest, Cypress)
+- Web accessibility (WCAG, semantic HTML, ARIA)
 - Git workflows & deployment pipelines
 
 **PT** —
@@ -531,7 +622,9 @@ laboratórios.
 - Processamento assíncrono & filas
 - PostgreSQL & bancos relacionais (pgvector, full-text search)
 - Otimização de performance (Lighthouse, Core Web Vitals)
-- Testes end-to-end (Playwright, Cypress)
+- Observabilidade & monitoramento de erros (PostHog, Sentry)
+- Testes automatizados (Playwright, Jest, Cypress)
+- Acessibilidade web (WCAG, HTML semântico, ARIA)
 - Versionamento com Git & pipelines de deploy
 
 ---
@@ -542,28 +635,35 @@ laboratórios.
 
 *A ordem das linhas muda por versão: na front, Frontend vem primeiro; na back, Backend e
 Databases vêm primeiro. Na fullstack, mantém a ordem abaixo. Em vaga com peso em mobile,
-Mobile sobe para logo depois de Frontend.*
+Mobile sobe para logo depois de Frontend. Acessibilidade e Observabilidade são linhas novas:
+na versão front elas sobem (Acessibilidade logo depois de Gerenciamento de estado,
+Observabilidade logo depois de Testes); na back, Observabilidade fica colada em Testes e
+Acessibilidade cai para o fim.*
 
-- **Frontend:** Next.js, React, JavaScript, TypeScript, HTML, CSS, Tailwind CSS
+- **Frontend:** Next.js, React, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Material UI
 - **Mobile:** React Native, Flutter
 - **State management:** Zustand, React Context, SWR
+- **Accessibility:** WCAG guidelines, semantic HTML, ARIA
 - **Backend:** Node.js, NestJS, Django, Express, PHP (Laravel)
 - **Databases:** PostgreSQL (pgvector, tsvector, pg_trgm), MySQL, Supabase, Firebase
 - **DevOps & Infrastructure:** Git, Docker, GitHub Actions, Nginx, AWS S3, AWS SQS, RabbitMQ,
   Elasticsearch, Render
-- **Testing & Automation:** Playwright, Cypress, Jest, Vitest, LambdaTest
+- **Automated testing:** Playwright, Cypress, Jest, Vitest, LambdaTest
+- **Observability:** PostHog, Sentry
 - **AI-assisted development:** Claude Code
 - **Tools & Workflows:** TurboRepo, npm workspaces, WebSockets, cron jobs
 
 **PT** —
-- **Frontend:** Next.js, React, JavaScript, TypeScript, HTML, CSS, Tailwind CSS
+- **Frontend:** Next.js, React, JavaScript, TypeScript, HTML, CSS, Tailwind CSS, Material UI
 - **Mobile:** React Native, Flutter
 - **Gerenciamento de estado:** Zustand, React Context, SWR
+- **Acessibilidade:** diretrizes WCAG, HTML semântico, ARIA
 - **Backend:** Node.js, NestJS, Django, Express, PHP (Laravel)
 - **Bancos de dados:** PostgreSQL (pgvector, tsvector, pg_trgm), MySQL, Supabase, Firebase
 - **DevOps & Infraestrutura:** Git, Docker, GitHub Actions, Nginx, AWS S3, AWS SQS, RabbitMQ,
   Elasticsearch, Render
-- **Testes & Automação:** Playwright, Cypress, Jest, Vitest, LambdaTest
+- **Testes automatizados:** Playwright, Cypress, Jest, Vitest, LambdaTest
+- **Observabilidade:** PostHog, Sentry
 - **Desenvolvimento assistido por IA:** Claude Code
 - **Ferramentas & Workflows:** TurboRepo, npm workspaces, WebSockets, cron jobs
 
@@ -602,32 +702,57 @@ currículo inteiro é o teto.*
 Combinações já definidas, para não refazer a escolha toda vez.
 
 ### Versão fullstack (perfil do LinkedIn, candidatura genérica)
-- **Summary:** abertura + frase fullstack
+- **Summary:** abertura padrão + frase fullstack
 - **Bytes & Pixels:** Lighthouse · app TCG · Algolia · RAG · worker SQS · MCP `[F/B]`
 - **Mais Retorno:** screener · checkout Pagar.me · migração Django→NestJS · faturas ·
-  NextAuth/Keycloak · portal de notícias SSG
+  testes Jest · NextAuth/Keycloak
 - **Nimbus:** os quatro bullets
 - **Etec:** fora
 - **Core Expertise:** lista fullstack
 - **Localização:** incluir
 
-→ *O bullet do Playwright saiu quando o app TCG entrou: pela regra de corte, ele é o único
-dos sete sem número nem decisão arquitetural. Testes continuam visíveis em Core Expertise e
-em Competências Técnicas. Se a vaga tiver peso em QA, o swap de volta é Playwright no lugar
-do Algolia.*
+→ *O bullet do Playwright continua fora dos 6 da Bytes, mas testes automatizados deixaram de
+depender só de Core Expertise e Competências Técnicas: o Jest entrou na Mais Retorno e o
+portal de notícias SSG desceu para o 7º. A troca é deliberada — o portal é prova de
+renderização, que nesta versão já está no screener e no checkout, enquanto teste não estava
+em bullet nenhum. Se a vaga tiver peso em QA, o segundo swap é Playwright no lugar do
+Algolia, e aí o par E2E + unitário aparece inteiro.*
+
+→ *Observabilidade nesta versão fica no banco, não nos 6: PostHog é o 7º da Bytes e Sentry o
+7º da Mais Retorno. Se a vaga citar observabilidade ou monitoramento, o swap é PostHog no
+lugar do MCP e Sentry no lugar do portal de notícias SSG — duas linhas trocadas de lugar, e
+o tema passa a aparecer em duas empresas.*
 
 ### Versão frontend
-- **Summary:** abertura + frase frontend
+- **Título:** `Frontend Engineer`
+- **Summary:** abertura frontend + frase frontend
 - Recorte por `[F]` e `[F/B]`, 6 bullets por experiência, MCP na redação `[F]`
+- **Bytes & Pixels:** Lighthouse · app TCG · MCP `[F]` · PostHog · Playwright · Storyblok
+- **Mais Retorno:** screener · componentes acessíveis · portal de notícias SSG · busca
+  unificada de ativos · checkout Pagar.me · Sentry
+- **Nimbus:** app React Native primeiro, depois player de mapas, depois plataforma NIMBUS,
+  depois dados de mercado de energia
+- **Etec:** fora
+- **Core Expertise:** lista frontend
+- **Technical Skills:** Acessibilidade depois de Gerenciamento de estado, Observabilidade
+  depois de Testes
+- **Localização:** incluir
+
+→ *Os dois bullets novos entram nos 6 aqui porque foram escritos para fechar duas lacunas
+apontadas por vaga ("nenhuma menção a observabilidade", "nenhuma menção a acessibilidade") —
+não porque sejam os mais fortes. Pela regra de corte, PostHog é frágil, e o que ele desloca
+(portfólio da coleção, PayPal/Stripe) não é fraco. Em vaga de frontend que não cite nenhum
+dos dois temas, os candidatos naturais a voltar são monorepo TurboRepo e página de assinatura
+com SSR na Mais Retorno.*
 
 ### Versão backend
-- **Summary:** abertura + frase backend
+- **Summary:** abertura padrão + frase backend
 - Recorte por `[B]` e `[F/B]`, 6 bullets por experiência, MCP na redação `[B]`
 
 ### Versão fullstack Supabase + IA no desenvolvimento
 Usada primeiro na vaga Thaloz / GR8 Global (Senior Full Stack: React, Next.js, TypeScript,
 Postgres e Supabase, com IA no desenvolvimento como requisito).
-- **Summary:** abertura + frase fullstack com IA no desenvolvimento
+- **Summary:** abertura padrão + frase fullstack com IA no desenvolvimento
 - **Bytes & Pixels:** Lighthouse · app TCG · Algolia · RAG · worker SQS · MCP `[F/B]`
 - **Mais Retorno:** screener · checkout Pagar.me · migração Django→NestJS · faturas ·
   NextAuth/Keycloak · portal de notícias SSG
@@ -645,7 +770,7 @@ existir projeto que sustente; ver notas para entrevista.*
 ### Versão mobile-fullstack (React Native como requisito principal)
 Usada primeiro na vaga Free Flow (fullstack com peso em front, React Native, Java e
 microsserviços, IA no desenvolvimento).
-- **Summary:** abertura + frase fullstack com peso em mobile
+- **Summary:** abertura padrão + frase fullstack com peso em mobile
 - **Bytes & Pixels:** app TCG · Lighthouse · MCP `[F/B]` · worker SQS · camada LLM
   (**redação autônoma**) · Playwright
 - **Mais Retorno:** screener · checkout Pagar.me · migração Django→NestJS ·
@@ -723,6 +848,37 @@ policies de RLS de verdade, **edite o bullet do app aqui primeiro** — é uma p
 idioma e vira o item mais valioso da versão. Se não têm, a resposta na entrevista é o
 modelo de acesso que você de fato implementou e por quê; não improvise policy que não
 escreveu.
+
+**Observabilidade.** O currículo prova instrumentação, não plataforma: eventos e erros de
+frontend no PostHog, erros de API no Sentry. O que ele **não** prova, e que você não deve
+deixar o entrevistador supor — tracing distribuído, métricas de infraestrutura, APM
+(Datadog, New Relic, Grafana), OpenTelemetry, alerta com on-call, SLO. Se perguntarem, a
+resposta forte não é a ferramenta, é o ciclo: qual evento você definiu e por quê, como um
+erro capturado virava prioridade de correção, e o que você olhava depois de subir uma versão.
+Vale recuperar antes da entrevista se o PostHog do funil chegou a mostrar queda de conversão
+por etapa — se chegou, essa é a melhor história dos dois bullets, porque liga observabilidade
+a decisão de produto e não a debug.
+
+**Acessibilidade.** O que existe é prática de construção: Material UI como base, HTML
+semântico e ARIA nos componentes customizados. O Material UI já entrega boa parte da
+acessibilidade pronta, e o entrevistador sabe disso — então o mérito que você reivindica é o
+que foi feito **em cima** dele, nos componentes que a biblioteca não cobria. O que não
+existe: auditoria formal, axe/Lighthouse a11y como gate de CI, teste com leitor de tela
+(NVDA, VoiceOver), navegação por teclado validada de ponta a ponta, verificação de contraste,
+nível AA declarado. Se perguntarem "qual nível de WCAG?", a resposta honesta é que você
+seguia as diretrizes na construção sem programa de conformidade formal — e essa resposta é
+melhor que um "AA" que não sobrevive à pergunta seguinte. Se em algum momento você olhou o
+score de acessibilidade do Lighthouse junto com o de performance, isso é ponte real com o
+bullet 55 → 80; confirme antes de usar.
+
+**Testes automatizados.** O currículo agora prova dois níveis: E2E do onboarding ao checkout
+(Playwright, rodando também em iOS físico via LambdaTest) e unitário nos casos de uso da API
+NestJS (Jest). O que ele não prova, e que você não deve deixar supor: percentual de
+cobertura, teste rodando como gate de CI, testes de integração ou de contrato. Se
+perguntarem, as perguntas prováveis são flakiness (o que você fez quando um teste E2E
+quebrou sem o código mudar), dados de teste (como o funil chegava ao checkout sem cobrar de
+verdade) e o que era mockado nos casos de uso. Vale ter uma resposta pronta para a mais
+provável de todas: por que E2E no funil e unitário na API, e não o contrário.
 
 **Claude Code.** Se perguntarem como você usa (e essa vaga vai perguntar), o que conta não é
 a ferramenta, é o critério de revisão: o que você rejeita do agente, que convenção de

@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import Skills from '../../components/Skills.astro';
+import Experiences from '../../components/Experiences.astro';
+import Stack from '../../components/Stack.astro';
+import Footer from '../../components/Footer.astro';
+import { parseCv } from '../../lib/cv';
+import { personSchema } from '../../lib/seo';
+
+const locale = 'pt';
+const sections = await getCollection('sections');
+const hero = sections.find((entry) => entry.id === 'hero-pt');
+const skillsSection = sections.find((entry) => entry.id === 'skills-pt');
+const experiencesSection = sections.find((entry) => entry.id === 'experiences-pt');
+const stackSection = sections.find((entry) => entry.id === 'stack-pt');
+const cvEntries = await getCollection('cv');
+const fullstackEntry = cvEntries.find((entry) => entry.id === 'cv-pt');
+const summary = (() => {
+	const parsed = fullstackEntry ? parseCv(fullstackEntry.body ?? '') : [];
+	const summarySection = parsed.find(
+		(section) => section.title.toLowerCase() === 'summary' || section.title.toLowerCase() === 'resumo',
+	);
+	return summarySection?.paragraphs.join(' ') ?? '';
+})();
+
+if (!hero || !skillsSection || !experiencesSection || !stackSection) {
+	throw new Error('Missing PT section content in src/content/sections/');
+}
+
+const allSkills = await getCollection('skills');
+const skills = allSkills.filter((entry) => entry.id.endsWith('-pt'));
+const allExperiences = await getCollection('experiences');
+const experiences = allExperiences.filter((entry) => entry.id.endsWith('-pt'));
+const allStack = await getCollection('stack');
+const stack = allStack.filter((entry) => entry.id.endsWith('-pt'));
+
+const knowsAbout = stack.flatMap((s) => s.data.items);
+const structuredData = personSchema(Astro.site?.href, knowsAbout);
+---
+
+<Layout ogType="profile" structuredData={structuredData} lang={locale}>
+	<Header cvLabel={hero.data.cvLabel} cvHref={hero.data.cvHref} currentLocale={locale} />
+	<main>
+		<Hero entry={hero} summary={summary} />
+		<Skills section={skillsSection} entries={skills} />
+		<Experiences section={experiencesSection} entries={experiences} />
+		<Stack section={stackSection} entries={stack} />
+	</main>
+	<Footer github={hero.data.github} linkedin={hero.data.linkedin} currentLocale={locale} />
+</Layout>

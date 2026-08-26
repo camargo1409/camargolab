@@ -2,17 +2,19 @@
 interface Props {
 	github?: string;
 	linkedin?: string;
+	currentLocale?: 'en' | 'pt';
 }
 
-const { github, linkedin } = Astro.props;
+const { github, linkedin, currentLocale = 'en' } = Astro.props;
 const year = new Date().getFullYear();
+const footerLine = currentLocale === 'pt' ? '© {year} Gabriel Camargo. Feito para performance.' : '© {year} Gabriel Camargo. Built for performance.';
 ---
 
 <footer class="border-t border-line/60">
 	<div
 		class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 font-mono text-xs text-fog sm:flex-row"
 	>
-		<p>© {year} Gabriel Camargo. Built for performance.</p>
+		<p>{footerLine.replace('{year}', String(year))}</p>
 		<div class="flex items-center gap-6">
 			{
 				github && (

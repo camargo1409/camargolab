@@ -1,20 +1,22 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import { parseCv, mdInline } from '../lib/cv';
-import { personSchema } from '../lib/seo';
+import Layout from '../../layouts/Layout.astro';
+import { parseCv, mdInline } from '../../lib/cv';
+import { personSchema } from '../../lib/seo';
 
-// The rendered CV shows only the first N bullets of each experience;
-// the rest stay in the source file as an ordered bank.
-const requestedVariant = Astro.url.searchParams.get('variant');
-if (requestedVariant === 'frontend') {
-	return Astro.redirect('/cv/frontend');
+export function getStaticPaths() {
+	return [{ params: { variant: 'fullstack' } }, { params: { variant: 'frontend' } }];
 }
-if (requestedVariant === 'fullstack') {
+
+const MAX_BULLETS = 6;
+const allowedVariants = ['fullstack', 'frontend'];
+const variant = Astro.params.variant ?? 'fullstack';
+const locale = Astro.url.pathname.startsWith('/pt') ? 'pt' : 'en';
+
+if (!allowedVariants.includes(variant)) {
 	return Astro.redirect('/cv/fullstack');
 }
 
-return Astro.redirect('/cv/fullstack');
 const cvEntries = await getCollection('cv');
 const selectedEntry = cvEntries.find((entry) => {
 	const id = entry.id;
@@ -93,7 +95,6 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 	</div>
 
 	<main class="cv-sheet mx-auto my-10 max-w-[210mm] bg-white px-10 py-12 text-slate-800 shadow-2xl sm:rounded-md sm:px-14">
-		<!-- Header -->
 		<header class="mb-8 border-b-2 border-slate-800 pb-6">
 			<h1 class="text-3xl font-bold tracking-tight text-slate-900">{name}</h1>
 			<p class="mt-1 text-lg text-cyan-700">{title}</p>
@@ -188,7 +189,6 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 		color: #0e7490;
 	}
 
-	/* Print: compress everything so the CV fits in as few pages as possible. */
 	@page {
 		size: A4;
 		margin: 8mm 9mm;
@@ -236,30 +236,5 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 			margin-bottom: 5px !important;
 			padding-bottom: 2px !important;
 		}
-		.cv-sheet h3 {
-			font-size: 10.5px !important;
-		}
-		.cv-sheet p,
-		.cv-sheet li {
-			font-size: 9.5px !important;
-			line-height: 1.4 !important;
-		}
-		.cv-sheet .cv-entry {
-			margin-bottom: 2.5mm !important;
-		}
-		.cv-sheet .cv-entry ul {
-			margin-top: 3px !important;
-		}
-		.cv-sheet ul > li {
-			margin-top: 2px !important;
-		}
-		.cv-sheet ul > li:first-child {
-			margin-top: 0 !important;
-		}
-	}
-
-	@page {
-		size: A4;
-		margin: 9mm 11mm;
 	}
 </style>

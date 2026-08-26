@@ -4,9 +4,10 @@ import type { CollectionEntry } from 'astro:content';
 
 interface Props {
 	entry: CollectionEntry<'sections'>;
+	summary?: string;
 }
 
-const { entry } = Astro.props;
+const { entry, summary } = Astro.props;
 const { Content } = await render(entry);
 
 const socials = [
@@ -49,7 +50,7 @@ const socials = [
 		</h1>
 
 		<div class="md-body mx-auto mb-10 max-w-2xl text-sm leading-relaxed text-fog sm:text-base">
-			<Content />
+			{summary ? <p>{summary}</p> : <Content />}
 		</div>
 
 		<div class="flex items-center justify-center gap-3">

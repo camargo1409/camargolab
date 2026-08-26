@@ -1,9 +1,10 @@
 ---
 title: Full-Stack Engineer.
-badge: Available for new opportunities
+badge: Disponível para novas oportunidades
 cvLabel: CV
-cvHref: /cv
+cvHref: /pt/cv
 github: 'https://github.com/camargo1409'
 linkedin: 'https://www.linkedin.com/in/gabriel-mcamargo'
 ---
+
 

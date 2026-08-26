@@ -8,6 +8,8 @@ interface Props {
 	keywords?: string[];
 	ogType?: string;
 	structuredData?: object;
+	lang?: string;
+	ogLocale?: string;
 }
 
 const {
@@ -16,6 +18,8 @@ const {
 	keywords = SEO.keywords,
 	ogType = 'website',
 	structuredData,
+	lang = 'en',
+	ogLocale = lang === 'pt' ? 'pt_BR' : 'en_US',
 } = Astro.props;
 
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
@@ -23,7 +27,7 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -44,7 +48,7 @@ const ogImage = Astro.site ? new URL('/og.png', Astro.site).href : '/og.png';
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		{canonical && <meta property="og:url" content={canonical} />}
-		<meta property="og:locale" content="en_US" />
+		<meta property="og:locale" content={ogLocale} />
 		<meta property="og:image" content={ogImage} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />

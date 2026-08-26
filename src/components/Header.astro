@@ -2,16 +2,28 @@
 interface Props {
 	cvLabel?: string;
 	cvHref?: string;
+	currentLocale?: 'en' | 'pt';
 }
 
-const { cvLabel = 'CV', cvHref = '/cv' } = Astro.props;
+const { cvLabel = 'CV', cvHref = '/cv', currentLocale = 'en' } = Astro.props;
 
-const links = [
-	{ label: 'Hero', href: '#hero' },
-	{ label: 'Skills', href: '#skills' },
-	{ label: 'Experiences', href: '#experiences' },
-	{ label: 'Stack', href: '#stack' },
-];
+const links =
+	currentLocale === 'pt'
+		? [
+			{ label: 'Início', href: '#hero' },
+			{ label: 'Habilidades', href: '#skills' },
+			{ label: 'Experiência', href: '#experiences' },
+			{ label: 'Stack', href: '#stack' },
+		]
+		: [
+			{ label: 'Hero', href: '#hero' },
+			{ label: 'Skills', href: '#skills' },
+			{ label: 'Experiences', href: '#experiences' },
+			{ label: 'Stack', href: '#stack' },
+		];
+
+const alternateLocale =
+	currentLocale === 'pt' ? { href: '/', label: 'EN' } : { href: '/pt', label: 'PT' };
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 border-b border-line/60 bg-ink-950/80 backdrop-blur-md">
@@ -33,11 +45,19 @@ const links = [
 			}
 		</nav>
 
-		<a
-			href={cvHref}
-			class="rounded-sm border border-accent px-4 py-2 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-ink-950"
-		>
-			{cvLabel}
-		</a>
+		<div class="flex items-center gap-3">
+			<a
+				href={alternateLocale.href}
+				class="font-mono text-[10px] uppercase tracking-[0.2em] text-fog transition-colors hover:text-white"
+			>
+				{alternateLocale.label}
+			</a>
+			<a
+				href={cvHref}
+				class="rounded-sm border border-accent px-4 py-2 font-mono text-xs font-medium text-accent transition-colors hover:bg-accent hover:text-ink-950"
+			>
+				{cvLabel}
+			</a>
+		</div>
 	</div>
 </header>

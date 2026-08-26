@@ -1,35 +1,28 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../layouts/Layout.astro';
-import { parseCv, mdInline } from '../lib/cv';
-import { personSchema } from '../lib/seo';
+import Layout from '../../layouts/Layout.astro';
+import { parseCv, mdInline } from '../../lib/cv';
+import { personSchema } from '../../lib/seo';
 
-// The rendered CV shows only the first N bullets of each experience;
-// the rest stay in the source file as an ordered bank.
 const requestedVariant = Astro.url.searchParams.get('variant');
 if (requestedVariant === 'frontend') {
-	return Astro.redirect('/cv/frontend');
+	return Astro.redirect('/pt/cv/frontend');
 }
 if (requestedVariant === 'fullstack') {
-	return Astro.redirect('/cv/fullstack');
+	return Astro.redirect('/pt/cv/fullstack');
 }
 
-return Astro.redirect('/cv/fullstack');
+return Astro.redirect('/pt/cv/fullstack');
 const cvEntries = await getCollection('cv');
 const selectedEntry = cvEntries.find((entry) => {
 	const id = entry.id;
 	const isFrontend = id.includes('frontend');
 	const isPt = id.endsWith('-pt') || id.includes('-pt');
-
-	if (locale === 'pt') {
-		return isPt && (variant === 'frontend' ? isFrontend : !isFrontend);
-	}
-
-	return !isPt && (variant === 'frontend' ? isFrontend : !isFrontend);
+	return isPt && (variant === 'frontend' ? isFrontend : !isFrontend);
 });
 
 if (!selectedEntry) {
-	throw new Error(`Missing CV content for locale ${locale} and variant ${variant}`);
+	throw new Error(`Missing PT CV content for variant ${variant}`);
 }
 
 const { name, title, email, phone, location, linkedin, github } = selectedEntry.data;
@@ -49,17 +42,16 @@ const structuredData = {
 	mainEntity: { ...personSchema(Astro.site?.href), '@context': undefined },
 };
 
-const tabBase = locale === 'pt' ? '/pt/cv' : '/cv';
-const tabLabels = locale === 'pt' ? { fullstack: 'Fullstack', frontend: 'Frontend' } : { fullstack: 'Fullstack', frontend: 'Frontend' };
-const downloadLabel = locale === 'pt' ? 'Baixar PDF' : 'Download PDF';
-const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
+const tabBase = '/pt/cv';
+const tabLabels = { fullstack: 'Fullstack', frontend: 'Frontend' };
+const downloadLabel = 'Baixar PDF';
 ---
 
 <Layout title={`${name} — ${title} | CV`} ogType="profile" structuredData={structuredData} lang={locale}>
 	<div class="no-print border-b border-line/60 bg-ink-950">
 		<div class="mx-auto flex h-16 max-w-[210mm] items-center justify-between px-6">
-			<a href={locale === 'pt' ? '/pt' : '/'} class="font-mono text-xs text-fog transition-colors hover:text-white">
-				{backLabel}
+			<a href="/pt" class="font-mono text-xs text-fog transition-colors hover:text-white">
+				← camargolab
 			</a>
 			<div class="flex items-center gap-3">
 				<div class="inline-flex rounded-sm border border-line bg-ink-900/80 p-1">
@@ -93,7 +85,6 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 	</div>
 
 	<main class="cv-sheet mx-auto my-10 max-w-[210mm] bg-white px-10 py-12 text-slate-800 shadow-2xl sm:rounded-md sm:px-14">
-		<!-- Header -->
 		<header class="mb-8 border-b-2 border-slate-800 pb-6">
 			<h1 class="text-3xl font-bold tracking-tight text-slate-900">{name}</h1>
 			<p class="mt-1 text-lg text-cyan-700">{title}</p>
@@ -188,7 +179,6 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 		color: #0e7490;
 	}
 
-	/* Print: compress everything so the CV fits in as few pages as possible. */
 	@page {
 		size: A4;
 		margin: 8mm 9mm;
@@ -256,10 +246,5 @@ const backLabel = locale === 'pt' ? '← camargolab' : '← camargolab';
 		.cv-sheet ul > li:first-child {
 			margin-top: 0 !important;
 		}
-	}
-
-	@page {
-		size: A4;
-		margin: 9mm 11mm;
 	}
 </style>
