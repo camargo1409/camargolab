@@ -294,6 +294,12 @@ Supabase, with a Better Auth server handling authentication and authorization.
 backend em NestJS e Supabase e um servidor Better Auth responsável por autenticação e
 autorização.
 
+`[F/B]` Integrated Stripe into a web sales funnel, enabling PayPal payments and configuring Stripe Managed Payments to simplify global tax compliance and international payment processing.
+
+**PT** — Integrei o Stripe em um funil de vendas web, habilitando pagamentos via PayPal e configurando o Stripe Managed Payments para simplificar a conformidade fiscal global e o processamento de pagamentos internacionais.
+
+---
+
 `[F/B]` Built an MCP server for ChatGPT apps with the OpenAI Apps SDK — React interactive
 widgets on a custom Vite multi-entry build producing independent bundles, backed by NestJS
 and Supabase with a Better Auth authentication server.
@@ -302,12 +308,6 @@ and Supabase with a Better Auth authentication server.
 interativos em React sobre um build customizado multi-entry em Vite que gera bundles
 independentes, com backend em NestJS e Supabase e um servidor Better Auth para autenticação
 e autorização.
-
----
-
-`[F/B]` Integrated Stripe into a web sales funnel, enabling PayPal payments and configuring Stripe Managed Payments to simplify global tax compliance and international payment processing.
-
-**PT** — Integrei o Stripe em um funil de vendas web, habilitando pagamentos via PayPal e configurando o Stripe Managed Payments para simplificar a conformidade fiscal global e o processamento de pagamentos internacionais.
 
 `[F]` Developed reusable components in a Storyblok headless CMS using Vue.js and Tailwind
 CSS.
