@@ -305,9 +305,9 @@ e autorização.
 
 ---
 
-`[F/B]` Integrated PayPal payments through Stripe, handling the full checkout flow.
+`[F/B]` Integrated Stripe into a web sales funnel, enabling PayPal payments and configuring Stripe Managed Payments to simplify global tax compliance and international payment processing.
 
-**PT** — Integrei pagamentos via PayPal através do Stripe, cobrindo todo o fluxo de checkout.
+**PT** — Integrei o Stripe em um funil de vendas web, habilitando pagamentos via PayPal e configurando o Stripe Managed Payments para simplificar a conformidade fiscal global e o processamento de pagamentos internacionais.
 
 `[F]` Developed reusable components in a Storyblok headless CMS using Vue.js and Tailwind
 CSS.

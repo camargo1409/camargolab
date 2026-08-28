@@ -38,12 +38,12 @@ Oct 2025 – Present · Munich-based agency
 - Replaced Algolia with Supabase Postgres-native search over a 40,000+ product catalog (weighted `tsvector` + `pg_trgm` typo tolerance), eliminating vendor cost with no regression in search quality.
 - Built a RAG-based skincare recommendation system on Supabase over a 40,000+ product catalog, pairing deterministic retrieval (pgvector cosine similarity over embedded skin profile and face scan data, HNSW indexing, post-retrieval allergen exclusion by substring match against INCI ingredient lists, Skin Match scoring) with LLM curation via structured output, producing localized morning/evening routines.
 - Designed a background worker consuming product offer updates from Amazon SQS, normalizing and indexing over 1 million products into Elasticsearch to power real-time offers on a client-facing site, implemented with NestJS.
-- Built an MCP server for ChatGPT apps with the OpenAI Apps SDK — React interactive widgets on a custom Vite multi-entry build producing independent bundles, backed by NestJS and Supabase with a Better Auth authentication server.
 - Instrumented a React sales funnel and mobile apps with PostHog, tracking product events and frontend errors to monitor user behavior and surface production failures.
 - Built the collection portfolio layer of the same app, tracking cost basis per acquisition (purchase date and price paid) against daily variant-level price data to report unrealized gain and loss per card and across the full collection.
 - Designed the LLM layer of a skincare recommendation system to be non-authoritative on safety: model output is validated against a deterministically retrieved shortlist, hallucinated products discarded and under-filled routine steps backfilled by score — guaranteeing a top pick plus alternatives per step.
 - Built automated end-to-end tests for a sales funnel with Playwright, covering the full path from onboarding to checkout, and integrated them with LambdaTest Real Device automation to run on physical iOS devices.
-- Integrated PayPal payments through Stripe, handling the full checkout flow.
+- Integrated Stripe into a web sales funnel, enabling PayPal payments and configuring Stripe Managed Payments to simplify global tax compliance and international payment processing.
+- Built an MCP server for ChatGPT apps with the OpenAI Apps SDK — React interactive widgets on a custom Vite multi-entry build producing independent bundles, backed by NestJS and Supabase with a Better Auth authentication server.
 - Developed reusable components in a Storyblok headless CMS using Vue.js and Tailwind CSS.
 - Redesigned a Flutter mobile app to extend its scanner from food products to cosmetics, restructuring the product model and scan flows to support a second category.
 - Built a community feed in the trading card app where collectors publish posts and share their collections.

@@ -42,12 +42,12 @@ Oct 2025 – Present · Munich-based agency
 
 - Raised the mobile Lighthouse performance score of a React sales funnel from 55 to 80 by auditing render behavior and eliminating redundant state, unnecessary `useEffect` hooks, and blocking operations on initial load.
 - Built a React Native trading card collection app on Supabase (Postgres catalog, Auth, Edge Functions) covering 7 card games, 1,742 sets and 220,000+ card variants, integrating the Ximilar computer vision API for card identification and modeling variant identity as a deterministic composite key (game, set, collector number, finish), with the matching printing confirmed by the user at scan time.
-- Built an MCP server for ChatGPT apps with the OpenAI Apps SDK, developing React interactive widgets and a custom Vite multi-entry build producing independent bundles rendered inside ChatGPT.
 - Instrumented a React sales funnel and mobile apps with PostHog, tracking product events and frontend errors to monitor user behavior and surface production failures.
 - Built automated end-to-end tests for a sales funnel with Playwright, covering the full path from onboarding to checkout, and integrated them with LambdaTest Real Device automation to run on physical iOS devices.
 - Developed reusable components in a Storyblok headless CMS using Vue.js and Tailwind CSS.
 - Built the collection portfolio layer of the same app, tracking cost basis per acquisition (purchase date and price paid) against daily variant-level price data to report unrealized gain and loss per card and across the full collection.
-- Integrated PayPal payments through Stripe, handling the full checkout flow.
+- Integrated Stripe into a web sales funnel, enabling PayPal payments and configuring Stripe Managed Payments to simplify global tax compliance and international payment processing.
+- Built an MCP server for ChatGPT apps with the OpenAI Apps SDK, developing React interactive widgets and a custom Vite multi-entry build producing independent bundles rendered inside ChatGPT.
 - Replaced Algolia with Supabase Postgres-native search over a 40,000+ product catalog (weighted `tsvector` + `pg_trgm` typo tolerance), eliminating vendor cost with no regression in search quality.
 - Built a RAG-based skincare recommendation system on Supabase over a 40,000+ product catalog, pairing deterministic retrieval (pgvector cosine similarity over embedded skin profile and face scan data, HNSW indexing, post-retrieval allergen exclusion by substring match against INCI ingredient lists, Skin Match scoring) with LLM curation via structured output, producing localized morning/evening routines.
 - Designed a background worker consuming product offer updates from Amazon SQS, normalizing and indexing over 1 million products into Elasticsearch to power real-time offers on a client-facing site, implemented with NestJS.
